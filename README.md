@@ -1,30 +1,100 @@
-# MUI Theme Generator
+<a name="readme-top"></a>
+# MUI Theme Generator 🎨
 
-🚀 **The Ultimate Tool for Material-UI Themes**  
+A powerful Material-UI theme generator with real-time preview and export capabilities. Create perfect color palettes for your React applications in seconds.
 
-Quickly create, customize, and export production-ready themes for your Material-UI (MUI) projects with this intuitive generator.
+## Features ✨
 
-## Key Features:
-- **Live Color Customization**  
-  Visually select primary/secondary colors with HEX/RGB support
-- **Automatic Theme Generation**  
-  Instantly creates `light`/`dark` variants with proper contrast text
-- **Full Code Export**  
-  One-click copy/paste or download as ready-to-use theme files
-- **Dark Mode Ready**  
-  Preview your theme in both light and dark modes
-- **Accessibility Focused**  
-  Automatically calculates WCAG-compliant text contrast
+- 🎨 **Interactive Color Picker** - Visually select primary and secondary colors
+- 🌓 **Dark/Light Mode** - Preview themes in both color schemes
+- 📋 **Automatic Code Generation** - Get ready-to-use theme configuration
+- 💾 **Multiple Export Options** - Copy to clipboard or download as JS file
+- 🚀 **React 19 & MUI 6 Ready** - Built with the latest technologies
 
-## How It Works:
-1. Pick your colors using the color picker
-2. Toggle between light/dark modes
-3. Preview all theme variants (light/main/dark)
-4. Export the complete theme code
-5. Paste directly into your MUI project!
+## Project Structure 📂
 
-Perfect for React developers using Material-UI v5+ who want to:
-- Rapidly prototype UI themes
-- Ensure color consistency
-- Simplify theme configuration
-- Maintain accessibility standards
+```
+src/
+├── assets/               # Static assets and images
+├── components/           # Reusable components
+│   ├── Head.tsx          # Document head component
+│   └── ProjectDescription.tsx # Project intro component
+├── App.tsx               # Main application component
+├── main.tsx              # Application entry point
+└── vite-env.d.ts         # TypeScript declarations
+```
+
+## Installation 💻
+
+```bash
+# Clone the repository
+git clone https://github.com/azael1412/mui-palette-generator.git
+
+# Navigate to project directory
+cd mui-palette-generator
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+## Usage 🖱️
+
+1. Select your primary and secondary colors
+2. Toggle between light/dark mode previews
+3. Copy the generated theme code or export as a file
+4. Implement in your project:
+
+```tsx
+// Paste this in your theme configuration
+import { createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#3f50b5',
+      light: '#757ce8',
+      dark: '#002884',
+      contrastText: '#fff'
+    },
+    // Generated configuration
+  }
+});
+```
+
+## Dependencies 🧩
+
+### Core
+- React 19
+- Material-UI (MUI) 6
+- TypeScript 5
+- Chroma.js (color calculations)
+- FileSaver (file exports)
+
+### Development
+- Vite (build tool)
+- ESLint (code linting)
+- Prettier (code formatting)
+
+## Contributing 🤝
+
+We welcome contributions! Please follow these steps:
+
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+<!-- ## License 📄
+
+This project is licensed under the [MIT License](LICENSE).
+
+--- -->
+
+⭐ If you find this project useful, please give it a star!  
+🐛 Found an issue? [Report it here](https://github.com/azael1412/mui-palette-generator/issues).
+
+<p align="right">(<a href="#readme-top">volver arriba</a>)</p>
