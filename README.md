@@ -97,4 +97,4 @@ This project is licensed under the [MIT License](LICENSE).
 ⭐ If you find this project useful, please give it a star!  
 🐛 Found an issue? [Report it here](https://github.com/azael1412/mui-palette-generator/issues).
 
-<p align="right">(<a href="#readme-top">volver arriba</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
