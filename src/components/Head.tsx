@@ -15,6 +15,8 @@ const Head = () => {
         property="og:description"
         content="Create perfect Material-UI themes with live preview and one-click export"
       />
+      <meta name="author" content="Azael Espinosa" />
+
       {/* <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" /> */}
     </>
