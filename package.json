@@ -1,13 +1,34 @@
 {
   "name": "mui-palette-generator",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
+  "description": "A Material-UI theme generator with real-time preview and export functionality",
+  "keywords": [
+    "material-ui",
+    "mui",
+    "theme-generator",
+    "react",
+    "color-picker"
+  ],
+  "author": "Azael Espinosa <azael_1412@hotmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/azael1412/mui-palette-generator#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/azael1412/mui-palette-generator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/azael1412/mui-palette-generator/issues"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint . --ext .ts,.tsx",
+    "lint:fix": "eslint . --ext .ts,.tsx --fix",
+    "type-check": "tsc --noEmit",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -32,8 +53,15 @@
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^15.15.0",
+    "prettier": "^3.5.3",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.24.1",
     "vite": "^6.2.0"
+  },
+  "lint-staged": {
+    "**/*.{jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
   }
 }
