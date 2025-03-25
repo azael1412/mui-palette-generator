@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from 'react';
 import {
   Box,
   Button,
@@ -11,19 +11,13 @@ import {
   FormControlLabel,
   Snackbar,
   Alert,
-} from "@mui/material";
-import { ChromePicker, ColorResult } from "react-color";
-import {
-  ContentCopy,
-  Download,
-  Contrast,
-  Lightbulb,
-  DarkMode,
-} from "@mui/icons-material";
-import chroma from "chroma-js";
-import { saveAs } from "file-saver";
-import Head from "./components/Head";
-import ProjectDescription from "./components/ProjectDescription";
+} from '@mui/material';
+import { ChromePicker, ColorResult } from 'react-color';
+import { ContentCopy, Download, Contrast, Lightbulb, DarkMode } from '@mui/icons-material';
+import chroma from 'chroma-js';
+import { saveAs } from 'file-saver';
+import Head from './components/Head';
+import ProjectDescription from './components/ProjectDescription';
 
 interface ColorDisplayProps {
   color: {
@@ -37,7 +31,6 @@ interface ColorDisplayProps {
 
 const ColorDisplay: React.FC<ColorDisplayProps> = ({ color, name }) => {
   return (
-
     <Box sx={{ mb: 4 }}>
       <Typography variant="h6" gutterBottom>
         {name.toUpperCase()}
@@ -47,12 +40,12 @@ const ColorDisplay: React.FC<ColorDisplayProps> = ({ color, name }) => {
           <Paper
             sx={{
               bgcolor: color.light,
-              color: chroma(color.light).luminance() > 0.4 ? "#000" : "#fff",
+              color: chroma(color.light).luminance() > 0.4 ? '#000' : '#fff',
               p: 2,
               height: 100,
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
             }}
           >
             <Box display="flex" alignItems="center">
@@ -70,10 +63,10 @@ const ColorDisplay: React.FC<ColorDisplayProps> = ({ color, name }) => {
               color: color.contrastText,
               p: 2,
               height: 100,
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              border: color.main === "#ffffff" ? "1px solid #ddd" : "none",
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              border: color.main === '#ffffff' ? '1px solid #ddd' : 'none',
             }}
           >
             <Typography variant="body2">main</Typography>
@@ -85,12 +78,12 @@ const ColorDisplay: React.FC<ColorDisplayProps> = ({ color, name }) => {
           <Paper
             sx={{
               bgcolor: color.dark,
-              color: chroma(color.dark).luminance() > 0.4 ? "#000" : "#fff",
+              color: chroma(color.dark).luminance() > 0.4 ? '#000' : '#fff',
               p: 2,
               height: 100,
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
             }}
           >
             <Box display="flex" alignItems="center">
@@ -108,52 +101,46 @@ const ColorDisplay: React.FC<ColorDisplayProps> = ({ color, name }) => {
           bgcolor: color.main,
           color: color.contrastText,
           p: 2,
-          display: "flex",
-          alignItems: "center",
-          border: color.main === "#ffffff" ? "1px solid #ddd" : "none",
+          display: 'flex',
+          alignItems: 'center',
+          border: color.main === '#ffffff' ? '1px solid #ddd' : 'none',
         }}
       >
         <Contrast sx={{ mr: 1 }} />
         <Typography variant="body2">
           contrastText: {color.contrastText} (
-          {chroma(color.contrastText).luminance() > 0.5 ? "light" : "dark"})
+          {chroma(color.contrastText).luminance() > 0.5 ? 'light' : 'dark'})
         </Typography>
       </Paper>
     </Box>
-
   );
 };
 
 const ThemeGenerator = () => {
-  const [primaryColor, setPrimaryColor] = useState("#3f50b5");
-  const [secondaryColor, setSecondaryColor] = useState("#f44336");
+  const [primaryColor, setPrimaryColor] = useState('#3f50b5');
+  const [secondaryColor, setSecondaryColor] = useState('#f44336');
   const [openSnackbar, setOpenSnackbar] = useState(false);
-  const [mode, setMode] = useState<"light" | "dark">("light");
-  const [showColorPicker, setShowColorPicker] = useState<
-    "primary" | "secondary" | null
-  >(null);
+  const [mode, setMode] = useState<'light' | 'dark'>('light');
+  const [showColorPicker, setShowColorPicker] = useState<'primary' | 'secondary' | null>(null);
   const pickerRef = useRef<HTMLDivElement>(null);
 
   // Handle clicks outside color picker
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (
-        pickerRef.current &&
-        !pickerRef.current.contains(event.target as Node)
-      ) {
+      if (pickerRef.current && !pickerRef.current.contains(event.target as Node)) {
         setShowColorPicker(null);
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
 
   const getContrastText = (color: string) => {
     const luminance = chroma(color).luminance();
-    return luminance > 0.4 ? "#000000" : "#ffffff";
+    return luminance > 0.4 ? '#000000' : '#ffffff';
   };
 
   const theme = createTheme({
@@ -172,8 +159,8 @@ const ThemeGenerator = () => {
         contrastText: getContrastText(secondaryColor),
       },
       background: {
-        default: mode === "dark" ? "#121212" : "#f5f5f5",
-        paper: mode === "dark" ? "#1e1e1e" : "#ffffff",
+        default: mode === 'dark' ? '#121212' : '#f5f5f5',
+        paper: mode === 'dark' ? '#1e1e1e' : '#ffffff',
       },
     },
     typography: {
@@ -181,11 +168,8 @@ const ThemeGenerator = () => {
     },
   });
 
-  const handleColorChange = (
-    color: ColorResult,
-    type: "primary" | "secondary"
-  ) => {
-    if (type === "primary") {
+  const handleColorChange = (color: ColorResult, type: 'primary' | 'secondary') => {
+    if (type === 'primary') {
       setPrimaryColor(color.hex);
     } else {
       setSecondaryColor(color.hex);
@@ -211,8 +195,8 @@ const theme = createTheme({
       contrastText: '${getContrastText(secondaryColor)}',
     },
     background: {
-      default: '${mode === "dark" ? "#121212" : "#f5f5f5"}',
-      paper: '${mode === "dark" ? "#1e1e1e" : "#ffffff"}',
+      default: '${mode === 'dark' ? '#121212' : '#f5f5f5'}',
+      paper: '${mode === 'dark' ? '#1e1e1e' : '#ffffff'}',
     },
   },
   typography: {
@@ -221,13 +205,14 @@ const theme = createTheme({
 });
 
 export default theme;`;
-navigator.clipboard.writeText(themeCode)
-.then(() => {
-  setOpenSnackbar(true);
-})
-.catch((err) => {
-  console.error('Failed to copy:', err);
-});
+    navigator.clipboard
+      .writeText(themeCode)
+      .then(() => {
+        setOpenSnackbar(true);
+      })
+      .catch((err) => {
+        console.error('Failed to copy:', err);
+      });
   };
 
   const exportTheme = () => {
@@ -249,8 +234,8 @@ const theme = createTheme({
       contrastText: '${getContrastText(secondaryColor)}',
     },
     background: {
-      default: '${mode === "dark" ? "#121212" : "#f5f5f5"}',
-      paper: '${mode === "dark" ? "#1e1e1e" : "#ffffff"}',
+      default: '${mode === 'dark' ? '#121212' : '#f5f5f5'}',
+      paper: '${mode === 'dark' ? '#1e1e1e' : '#ffffff'}',
     },
   },
   typography: {
@@ -260,27 +245,23 @@ const theme = createTheme({
 
 export default theme;`;
 
-    const blob = new Blob([themeCode], { type: "text/javascript" });
-    saveAs(blob, "mui-theme.tsx");
+    const blob = new Blob([themeCode], { type: 'text/javascript' });
+    saveAs(blob, 'mui-theme.tsx');
   };
 
   return (
     <ThemeProvider theme={theme}>
       <Snackbar
-      open={openSnackbar}
-      autoHideDuration={3000}
-      onClose={() => setOpenSnackbar(false)}
-      anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-    >
-      <Alert
-        onClose={() => setOpenSnackbar(false)} 
-        severity="success"
-        sx={{ width: '100%' }}
+        open={openSnackbar}
+        autoHideDuration={3000}
+        onClose={() => setOpenSnackbar(false)}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
       >
-        Copied to clipboard!
-      </Alert>
-    </Snackbar>
-      <Box sx={{ bgcolor: "background.default", minHeight: "100vh", p: 3 }}>
+        <Alert onClose={() => setOpenSnackbar(false)} severity="success" sx={{ width: '100%' }}>
+          Copied to clipboard!
+        </Alert>
+      </Snackbar>
+      <Box sx={{ bgcolor: 'background.default', minHeight: '100vh', p: 3 }}>
         <Head />
         <ProjectDescription />
         {/* Color Picker Modal */}
@@ -288,21 +269,19 @@ export default theme;`;
           <Box
             ref={pickerRef}
             sx={{
-              position: "fixed",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
+              position: 'fixed',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
               zIndex: 1300,
-              bgcolor: "background.paper",
+              bgcolor: 'background.paper',
               p: 3,
               borderRadius: 2,
               boxShadow: 24,
             }}
           >
             <ChromePicker
-              color={
-                showColorPicker === "primary" ? primaryColor : secondaryColor
-              }
+              color={showColorPicker === 'primary' ? primaryColor : secondaryColor}
               onChange={(color) => handleColorChange(color, showColorPicker)}
             />
             <Button
@@ -324,20 +303,18 @@ export default theme;`;
               variant="contained"
               sx={{
                 bgcolor: primaryColor,
-                "&:hover": { bgcolor: primaryColor },
+                '&:hover': { bgcolor: primaryColor },
                 color: getContrastText(primaryColor),
                 height: 60,
-                fontSize: "1.1rem",
-                border: primaryColor === "#ffffff" ? "1px solid #ddd" : "none",
+                fontSize: '1.1rem',
+                border: primaryColor === '#ffffff' ? '1px solid #ddd' : 'none',
               }}
               onClick={(e) => {
                 e.stopPropagation();
-                setShowColorPicker("primary");
+                setShowColorPicker('primary');
               }}
             >
-              {primaryColor === "#ffffff"
-                ? "White (with border)"
-                : "Primary Color"}
+              {primaryColor === '#ffffff' ? 'White (with border)' : 'Primary Color'}
             </Button>
           </Grid>
           <Grid size={{ xs: 12, md: 6 }}>
@@ -346,37 +323,34 @@ export default theme;`;
               variant="contained"
               sx={{
                 bgcolor: secondaryColor,
-                "&:hover": { bgcolor: secondaryColor },
+                '&:hover': { bgcolor: secondaryColor },
                 color: getContrastText(secondaryColor),
                 height: 60,
-                fontSize: "1.1rem",
-                border:
-                  secondaryColor === "#ffffff" ? "1px solid #ddd" : "none",
+                fontSize: '1.1rem',
+                border: secondaryColor === '#ffffff' ? '1px solid #ddd' : 'none',
               }}
               onClick={(e) => {
                 e.stopPropagation();
-                setShowColorPicker("secondary");
+                setShowColorPicker('secondary');
               }}
             >
-              {secondaryColor === "#ffffff"
-                ? "White (with border)"
-                : "Secondary Color"}
+              {secondaryColor === '#ffffff' ? 'White (with border)' : 'Secondary Color'}
             </Button>
           </Grid>
-          <Grid size={{ xs: 12 }} >
+          <Grid size={{ xs: 12 }}>
             <FormControlLabel
               control={
                 <Switch
-                  checked={mode === "dark"}
-                  onChange={() => setMode(mode === "light" ? "dark" : "light")}
+                  checked={mode === 'dark'}
+                  onChange={() => setMode(mode === 'light' ? 'dark' : 'light')}
                 />
               }
               label={
                 <Typography color="text.primary">
-                  {`${mode === "light" ? "Light" : "Dark"} Mode`}
+                  {`${mode === 'light' ? 'Light' : 'Dark'} Mode`}
                 </Typography>
               }
-              sx={{ color: "text.primary" }}
+              sx={{ color: 'text.primary' }}
             />
           </Grid>
         </Grid>
@@ -417,9 +391,9 @@ export default theme;`;
             component="pre"
             sx={{
               p: 2,
-              bgcolor: "background.paper",
+              bgcolor: 'background.paper',
               borderRadius: 1,
-              overflowX: "auto",
+              overflowX: 'auto',
               mb: 2,
             }}
           >
@@ -441,8 +415,8 @@ const theme = createTheme({
       contrastText: '${getContrastText(secondaryColor)}',
     },
     background: {
-      default: '${mode === "dark" ? "#121212" : "#f5f5f5"}',
-      paper: '${mode === "dark" ? "#1e1e1e" : "#ffffff"}',
+      default: '${mode === 'dark' ? '#121212' : '#f5f5f5'}',
+      paper: '${mode === 'dark' ? '#1e1e1e' : '#ffffff'}',
     },
   },
   typography: {
@@ -452,19 +426,11 @@ const theme = createTheme({
 
 export default theme;`}
           </Box>
-          <Box sx={{ display: "flex", gap: 2 }}>
-            <Button
-              variant="contained"
-              startIcon={<ContentCopy />}
-              onClick={copyThemeCode}
-            >
+          <Box sx={{ display: 'flex', gap: 2 }}>
+            <Button variant="contained" startIcon={<ContentCopy />} onClick={copyThemeCode}>
               Copy Code
             </Button>
-            <Button
-              variant="outlined"
-              startIcon={<Download />}
-              onClick={exportTheme}
-            >
+            <Button variant="outlined" startIcon={<Download />} onClick={exportTheme}>
               Export Theme
             </Button>
           </Box>
