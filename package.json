@@ -1,5 +1,5 @@
 {
-  "name": "mui-palette-generator",
+  "name": "mui-theme-generator",
   "private": true,
   "version": "1.0.0",
   "type": "module",
@@ -13,13 +13,13 @@
   ],
   "author": "Azael Espinosa <azael_1412@hotmail.com>",
   "license": "MIT",
-  "homepage": "https://github.com/azael1412/mui-palette-generator#readme",
+  "homepage": "https://github.com/azael1412/mui-theme-generator#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/azael1412/mui-palette-generator.git"
+    "url": "git+https://github.com/azael1412/mui-theme-generator.git"
   },
   "bugs": {
-    "url": "https://github.com/azael1412/mui-palette-generator/issues"
+    "url": "https://github.com/azael1412/mui-theme-generator/issues"
   },
   "scripts": {
     "dev": "vite",
