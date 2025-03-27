@@ -74,14 +74,14 @@ const ProjectDescription = () => {
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
           <Chip
             icon={<Palette fontSize="small" />}
-            label="Material-UI v5+"
+            label="MUI v5-6"
             size="small"
             color="success"
             variant="outlined"
           />
           <Chip
             icon={<Contrast fontSize="small" />}
-            label="React 16.8+"
+            label="React 17+"
             size="small"
             color="success"
             variant="outlined"
